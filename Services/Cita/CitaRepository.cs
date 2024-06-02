@@ -17,10 +17,37 @@ namespace Simulacro2.Services
             _context = context;
         }
         
-          public IEnumerable<Cita> GetAll(){
-            return _context.Citas.Include(e => e.Medico).Include(e => e.Paciente).ToList();
+        public IEnumerable<Cita> GetAll(){
+            return _context.Citas.Include(e => e.Medico).Include(e => e.Medico.Especialidad).Include(e => e.Paciente).ToList();
         }
 
+        /* public IEnumerable<Cita> GetAll(){
+            return _context.Citas.Include(e => e.Medico).Select(c => new Cita {
+                Id = c.Id,
+                MedicoId = c.MedicoId,
+                Medico = new Medico {
+                    NombreCompleto = c.Medico.NombreCompleto,
+                    EspecialidadId = c.Medico.EspecialidadId,
+                    Especialidad = new Especialidad {
+                        Nombre = c.Medico.Especialidad.Nombre,
+                        Estado = c.Medico.Especialidad.Estado
+                    },
+                    Estado = c.Medico.Estado
+                },
+                PacienteId = c.PacienteId,
+                Paciente = new Paciente {
+                    Nombres = c.Paciente.Nombres,
+                    Apellidos = c.Paciente.Apellidos,
+                    FechaNacimiento = c.Paciente.FechaNacimiento,
+                    Correo = c.Paciente.Correo,
+                    Telefono = c.Paciente.Telefono,
+                    Direccion = c.Paciente.Direccion,
+                    Estado = c.Paciente.Estado
+                }
+            }).ToList();
+        }
+        
+ */
         public async Task<IEnumerable<Cita>> GetInactiveAppointmentyAsync(){
             return await _context.Citas.Include(e => e.Medico).Include(e => e.Paciente).Where(e => e.Estado == "Inactivo").ToListAsync();
         }

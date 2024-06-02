@@ -6,8 +6,6 @@ CREATE TABLE Especialidades(
     Estado ENUM('Activo','Inactivo')
 );
 
-SELECT * FROM Especialidades;
-
 CREATE TABLE Pacientes(
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Nombres VARCHAR(125),
@@ -32,9 +30,11 @@ CREATE TABLE Citas(
     Id INT PRIMARY KEY AUTO_INCREMENT,
     MedicoId INT,
     PacienteId INT,
-    Fecha DATE,
+    Fecha DATETIME,
     Estado ENUM('Activo','Inactivo')
 );
+
+SELECT * FROM Citas;
 
 CREATE TABLE Tratamientos(
     Id INT PRIMARY KEY AUTO_INCREMENT,

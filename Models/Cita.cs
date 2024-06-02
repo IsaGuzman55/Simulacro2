@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace Simulacro2.Models{
@@ -8,13 +9,16 @@ namespace Simulacro2.Models{
         [Required]
         public int MedicoId {get; set;}
         public Medico Medico { get; set; }
+    
+
 
         [Required]
         public int PacienteId {get; set;}
         public Paciente Paciente { get; set; }
 
+
         [Required]
-        public DateOnly Fecha { get; set; }
+        public DateTime? Fecha { get; set; }
         
         [Required]
         public string Estado { get; set; }
