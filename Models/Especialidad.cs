@@ -17,5 +17,6 @@ namespace Simulacro2.Models{
 
         [JsonIgnore]
         public List<Medico>? Medicos { get; set; }
+    
     }
 }

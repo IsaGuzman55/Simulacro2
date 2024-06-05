@@ -1,32 +1,39 @@
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Simulacro2.Data;
-using Simulacro2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Simulacro2.Models;
 using Simulacro2.Services;
+using System;
+using System.Threading.Tasks;
+using Simulacro2.Utils;
 
-namespace Simulacro2.Controllers{
-    public class CitaCreateController : ControllerBase{
+namespace Simulacro2.Controllers
+{
+    public class CitaCreateController : ControllerBase
+    {
         private readonly ICitaRepository _citaRepository;
-        public CitaCreateController(ICitaRepository citaRepository){
+
+        public CitaCreateController(ICitaRepository citaRepository)
+        {
             _citaRepository = citaRepository;
         }
 
         [HttpPost]
         [Route("api/cita")]
-        public IActionResult Create([FromBody] Cita cita){
-            try{
-                _citaRepository.Create(cita);
-                return Ok("La cita se registró correctamente");
-            }
-            catch (System.Exception)
-            {   
-                return BadRequest("La cita no pudo crearse");
+        public async Task<ActionResult<ResponseUtils<Cita>>> Create([FromBody] Cita cita)
+        {
+            var respuesta = await _citaRepository.CreateOrCheckAsync(cita, cita.MedicoId, cita.PacienteId, cita.Fecha);
+            if (!respuesta.Status)
+            {
+                return StatusCode(422, respuesta);
+            }else{
+                return Ok(respuesta);
             }
 
+          
         }
     }
 }
+
+
+
+
+

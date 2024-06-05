@@ -101,9 +101,5 @@ namespace Simulacro2.Services
             }
         }
 
-
-
-
-        
     }
 }

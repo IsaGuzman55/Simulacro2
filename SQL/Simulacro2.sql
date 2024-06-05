@@ -1,4 +1,4 @@
--- Active: 1717034392849@@bcpuwyy7nejwbckj2l7r-mysql.services.clever-cloud.com@3306
+-- Active: 1717034392849@@bcpuwyy7nejwbckj2l7r-mysql.services.clever-cloud.com@3306@bcpuwyy7nejwbckj2l7r
 CREATE TABLE Especialidades(
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(125),
@@ -35,6 +35,8 @@ CREATE TABLE Citas(
 );
 
 SELECT * FROM Citas;
+
+SELECT * FROM Pacientes;
 
 CREATE TABLE Tratamientos(
     Id INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,6 +96,11 @@ INSERT INTO Citas (MedicoId, PacienteId, Fecha, Estado) VALUES
 (8, 8, '2024-06-08 10:30:00', 'Inactivo'),
 (9, 9, '2024-06-09 11:30:00', 'Activo'),
 (10, 10, '2024-06-10 12:00:00', 'Inactivo');
+
+
+INSERT INTO Citas (MedicoId, PacienteId, Fecha, Estado) VALUES
+(1, 3, '2024-06-01 06:30:00', 'Activo'),
+(2, 9, '2024-06-01 12:40:00', 'Inactivo');
 
 
 INSERT INTO Tratamientos (CitaId, Description, Estado) VALUES

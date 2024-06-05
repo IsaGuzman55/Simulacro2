@@ -10,15 +10,12 @@ namespace Simulacro2.Models{
         public int MedicoId {get; set;}
         public Medico Medico { get; set; }
     
-
-
         [Required]
         public int PacienteId {get; set;}
         public Paciente Paciente { get; set; }
 
-
         [Required]
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         
         [Required]
         public string Estado { get; set; }
